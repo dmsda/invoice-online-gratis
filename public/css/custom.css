@@ -1,0 +1,628 @@
+:root {
+    /* Brand Colors */
+    --bs-primary: #2563EB; /* Royal Blue */
+    --bs-primary-rgb: 37, 99, 235;
+    --bs-secondary: #64748B; /* Slate 500 */
+    --bs-secondary-rgb: 100, 116, 139;
+    --bs-success: #16A34A; /* Green 600 */
+    --bs-success-rgb: 22, 163, 74;
+    --bs-info: #0ea5e9; /* Sky 500 */
+    --bs-info-rgb: 14, 165, 233;
+    --bs-warning: #D97706; /* Amber 600 */
+    --bs-warning-rgb: 217, 119, 6;
+    --bs-danger: #DC2626; /* Red 600 */
+    --bs-danger-rgb: 220, 38, 38;
+    
+    /* Background Surface */
+    --bs-body-bg: #F8FAFC; /* Slate 50 */
+    --bs-body-color: #1E293B; /* Slate 800 */
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+    width: 100%;
+}
+
+/* Landing Page Classes (Moved from layout/landing.php) */
+.hero-section { background: linear-gradient(135deg, var(--bs-primary) 0%, #1d4ed8 100%); color: white; padding: 100px 0 80px; }
+.feature-icon { font-size: 2.5rem; color: var(--bs-primary); margin-bottom: 1rem; }
+.bg-light-soft { background-color: #f8f9fa; }
+.accordion-button:not(.collapsed) { background-color: #e7f1ff; color: var(--bs-primary); }
+.cta-section { background-color: var(--bs-primary); color: white; padding: 60px 0; }
+.navbar-brand { font-weight: bold; font-size: 1.5rem; }
+
+.navbar {
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    background-color: #ffffff !important; 
+    /* Override primary bg to white for clean look, or keep primary if preferred. 
+       Let's try a clean white navbar with primary text/logo for dashboard. */
+}
+
+.navbar-light .navbar-brand {
+    color: var(--bs-primary);
+    font-weight: 700;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #64748b;
+    font-weight: 500;
+}
+
+.navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link.active {
+    color: var(--bs-primary);
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+    font-weight: 600;
+    position: relative;
+}
+
+.navbar-light .navbar-nav .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 3px;
+    background-color: var(--bs-primary);
+    border-radius: 3px;
+}
+
+.navbar-nav .nav-link {
+    padding: 0.75rem 1rem; /* Larger touch target */
+}
+
+/* ======================================
+   SHOW PAGE UTILITIES (Refactor Inline Styles)
+   ====================================== */
+.status-icon-circle {
+    width: 56px; 
+    height: 56px;
+}
+.status-icon-fs {
+    font-size: 1.6rem;
+}
+.status-select-hero {
+    width: auto; 
+    background-color: #fff; 
+    color: #333; 
+    border: 1px solid rgba(255,255,255,0.6); 
+    border-radius: 8px; 
+    font-weight: 600; 
+    cursor: pointer;
+}
+.decorative-circle-1 {
+    width: 120px; 
+    height: 120px; 
+    transform: translate(30px, -30px);
+}
+.decorative-circle-2 {
+    width: 80px; 
+    height: 80px; 
+    transform: translate(-20px, 20px);
+}
+/* Status Gradients */
+.bg-gradient-draft { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+.bg-gradient-sent { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
+.bg-gradient-paid { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+.bg-gradient-canceled { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.btn-primary {
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+.card {
+    border: none;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    border-radius: 0.75rem;
+}
+
+.card-header {
+    background-color: white;
+    border-bottom: 1px solid #e2e8f0;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.table thead th {
+    background-color: #f1f5f9;
+    color: #475569;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.badge {
+    font-weight: 500;
+    padding: 0.35em 0.65em;
+}
+
+/* Badge specific overrides if needed */
+.bg-light.text-dark {
+    background-color: #f1f5f9 !important; /* Slate 100 */
+    color: #475569 !important; /* Slate 600 */
+}
+
+/* ============================================
+   CLIENT PAGE — Mobile UX Redesign
+   ============================================ */
+
+/* Client Avatar */
+.client-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--bs-primary) 0%, #1d4ed8 100%);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.client-avatar-lg {
+    width: 48px;
+    height: 48px;
+    font-size: 1.15rem;
+}
+
+.client-avatar.bg-warning {
+    background: linear-gradient(135deg, var(--bs-warning) 0%, #b45309 100%) !important;
+}
+
+/* Client Card — Mobile */
+.client-card {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    border-radius: 0.75rem !important;
+}
+
+.client-card:active {
+    transform: scale(0.98);
+}
+
+/* Action Icon Buttons */
+.action-icon-btn {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 0.85rem;
+    border-radius: 0.375rem;
+}
+
+/* Search Form */
+.client-search-form .input-group {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.06);
+    border: 1px solid #e2e8f0;
+}
+
+.client-search-form .input-group-text {
+    border: none;
+    padding-left: 1rem;
+}
+
+.client-search-form .form-control {
+    border: none;
+    padding: 0.75rem 0.5rem;
+    font-size: 0.95rem;
+}
+
+.client-search-form .form-control:focus {
+    box-shadow: none;
+}
+
+.client-search-form .btn {
+    border: none;
+    border-left: 1px solid #e2e8f0;
+    border-radius: 0;
+}
+
+/* Floating Action Button */
+.fab {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--bs-primary) 0%, #1d4ed8 100%);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.4);
+    text-decoration: none;
+    z-index: 1050;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: fab-entrance 0.4s ease-out;
+}
+
+.fab:hover, .fab:focus {
+    color: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px 0 rgba(37, 99, 235, 0.5);
+}
+
+.fab:active {
+    transform: scale(0.95);
+}
+
+@keyframes fab-entrance {
+    from {
+        opacity: 0;
+        transform: scale(0.5) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* FAB Hint Animation */
+.fab-hint {
+    position: fixed;
+    bottom: 90px;
+    right: 30px;
+    background: #333;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 1045;
+    animation: hint-float 2s infinite ease-in-out;
+    pointer-events: none; /* Let clicks pass through */
+}
+.fab-hint::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #333;
+}
+@keyframes hint-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Empty State */
+.empty-state-icon {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Form Actions — Sticky on Mobile */
+@media (max-width: 767.98px) {
+    .form-actions {
+        position: sticky;
+        bottom: 0;
+        background: #fff;
+        margin: 0 -1.5rem -1.5rem;
+        padding: 1rem 1.5rem;
+        border-top: 1px solid #e2e8f0;
+        box-shadow: 0 -2px 10px rgb(0 0 0 / 0.05);
+    }
+}
+
+/* Min Width Helper */
+.min-width-0 {
+    min-width: 0;
+}
+
+/* Mobile Card Entrance Animation */
+@media (max-width: 767.98px) {
+    .client-card {
+        animation: card-slide-up 0.3s ease-out both;
+    }
+
+    .client-card:nth-child(1) { animation-delay: 0.05s; }
+    .client-card:nth-child(2) { animation-delay: 0.1s; }
+    .client-card:nth-child(3) { animation-delay: 0.15s; }
+    .client-card:nth-child(4) { animation-delay: 0.2s; }
+    .client-card:nth-child(5) { animation-delay: 0.25s; }
+}
+
+@keyframes card-slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   INVOICE PAGES — Mobile UX Redesign
+   ============================================ */
+
+/* Status Filter Pills */
+.invoice-status-pills {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.invoice-status-pills::-webkit-scrollbar {
+    display: none;
+}
+
+/* Invoice Card — Mobile */
+.invoice-card {
+    border-radius: 0.75rem !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.invoice-card:active {
+    transform: scale(0.98);
+}
+
+@media (max-width: 767.98px) {
+    .invoice-card {
+        animation: card-slide-up 0.3s ease-out both;
+    }
+    .invoice-card:nth-child(1) { animation-delay: 0.05s; }
+    .invoice-card:nth-child(2) { animation-delay: 0.1s; }
+    .invoice-card:nth-child(3) { animation-delay: 0.15s; }
+    .invoice-card:nth-child(4) { animation-delay: 0.2s; }
+    .invoice-card:nth-child(5) { animation-delay: 0.25s; }
+}
+
+/* ---- Invoice Detail Page ---- */
+
+/* Hero Status Banner */
+.invoice-status-hero {
+    animation: card-slide-up 0.35s ease-out;
+    box-shadow: 0 4px 20px rgb(0 0 0 / 0.15);
+}
+
+/* Back Link */
+.back-link {
+    transition: color 0.15s ease, transform 0.15s ease;
+}
+.back-link:hover {
+    color: var(--bs-primary) !important;
+    transform: translateX(-3px);
+}
+
+/* Client Info Card */
+.client-info-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 1px solid #e2e8f0;
+}
+
+/* Larger Client Avatar for detail page */
+.client-avatar-lg {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: white;
+}
+
+/* Item Card for Show page (mobile) */
+.invoice-item-show-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 3px solid #3b82f6;
+    transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.invoice-item-show-card:hover {
+    background: #f1f5f9;
+}
+
+/* Totals Detail Section */
+.invoice-totals-detail {
+    transition: box-shadow 0.2s ease;
+}
+.invoice-totals-detail:hover {
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.06);
+}
+
+@media (max-width: 767.98px) {
+    .invoice-totals-detail {
+        max-width: 100% !important;
+    }
+}
+
+/* Invoice Item Card (Create/Edit — mobile) */
+.invoice-item-card {
+    transition: background-color 0.15s ease;
+}
+
+.invoice-item-card:last-child {
+    border-bottom: none !important;
+}
+
+/* Sticky Bottom Action Bar */
+.sticky-bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 0.75rem 1rem;
+    border-top: 1px solid #e2e8f0;
+    box-shadow: 0 -4px 16px rgb(0 0 0 / 0.1);
+    z-index: 1040;
+    animation: slide-up-bar 0.3s ease-out;
+}
+
+@keyframes slide-up-bar {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Invoice Form Totals */
+.invoice-totals-form {
+    max-width: 380px;
+}
+
+@media (max-width: 767.98px) {
+    .invoice-totals-form {
+        max-width: 100%;
+    }
+
+    /* Ensure bottom padding for sticky bar overlap */
+    .sticky-bottom-bar ~ * {
+        padding-bottom: 80px;
+    }
+}
+
+/* Add bottom padding to content when sticky bar is present */
+@media (max-width: 991.98px) {
+    body:has(.sticky-bottom-bar) {
+        padding-bottom: 70px;
+    }
+}
+
+/* ======================================
+   MOBILE TOUCH TARGET COMPLIANCE (44px)
+   ====================================== */
+
+/* All form controls — minimum 44px height on mobile */
+@media (max-width: 767.98px) {
+    .form-control,
+    .form-select {
+        min-height: 44px;
+        font-size: 1rem;
+    }
+
+    /* All buttons — minimum 44px touch target */
+    .btn {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Small buttons — at least 38px */
+    .btn-sm {
+        min-height: 38px;
+    }
+
+    /* Action icon buttons — square 44x44 on mobile */
+    .action-icon-btn {
+        min-width: 44px;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+    }
+
+    /* Password toggle button fix */
+    .input-group .btn {
+        min-height: 44px;
+    }
+
+    /* Navbar toggler — 44px touch target */
+    .navbar-toggler {
+        min-width: 44px;
+        min-height: 44px;
+        padding: 0.5rem;
+    }
+}
+
+/* ======================================
+   FILTER PILLS — HORIZONTAL SCROLL FIX
+   ====================================== */
+.invoice-status-pills {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE */
+    padding-bottom: 0.5rem;
+}
+
+.invoice-status-pills::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+
+@media (max-width: 767.98px) {
+    /* Global touch target constraint */
+    .btn, .form-control, .form-select {
+        min-height: 44px;
+    }
+
+    .invoice-status-pills .btn {
+        min-height: 44px !important; /* Overriding previous 38px specifically for consistency */
+        flex-shrink: 0;
+    }
+
+    /* Pagination Styling for Mobile */
+    .pagination .page-link {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* ======================================
+   UI/UX CONSISTENCY LOCK RULES
+   ====================================== */
+/* 1. Global Borders Lock */
+.btn {
+    border-radius: 50rem !important; /* rounded-pill lock */
+}
+.card, .form-control, .form-select, .input-group-text, .alert {
+    border-radius: 0.5rem !important; /* rounded-3 lock */
+}
+
+/* Ensure action icons are perfectly round as requested */
+.action-icon-btn {
+    border-radius: 50% !important;
+}
+
+/* UI Soft Lock classes */
+.premium-blur {
+    opacity: 0.4;
+    pointer-events: none;
+    user-select: none;
+    filter: blur(0.5px);
+}
